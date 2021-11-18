@@ -1,0 +1,33 @@
+
+[1]
+npx create-react-app . --template typescript
+[2]
+npm i axios
+[3]
+npm run start
+
+// but Typescript error:
+
+C:/privat/xampp/htdocs/88_windsms_jest_temp/src/components/ShowWindDays.tsx
+TypeScript error in C:/privat/xampp/htdocs/88_windsms_jest_temp/src/components/ShowWindDays.tsx(42,26):
+Type 'string' is not an array type or a string type. Use compiler option '--downlevelIteration' to allow iterating of iterators.  TS2569
+
+    40 |         const bin = days.toString(2);
+    41 |         // bin to array
+  > 42 |         const arr = [ ...bin ];
+       |                          ^
+    43 |         // calculate array of selected values in multiSelectItems
+    44 |         return arr.map( (value, index) => ( parseInt(value) * Math.pow(2, index) ) );
+    45 |     }
+
+solved by settings in tsconfig.json:
+[4]
+"downlevelIteration": true
+
+[5]
+// for all tests
+npm run test
+npm test
+
+// for one test
+npm test src/__tests__/apiPath.test.ts
